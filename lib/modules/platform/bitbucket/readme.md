@@ -21,7 +21,13 @@ After you installed the hosted app, please read the [reading list](../../../read
 
 ## Authentication
 
-First, [create an app password](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/) for the bot account.
+You can authenticate Renovate to Bitbucket Cloud, with one one of these methods:
+
+- [App Password](https://support.atlassian.com/bitbucket-cloud/docs/app-passwords/)
+- [Repository Access Tokens](https://support.atlassian.com/bitbucket-cloud/docs/repository-access-tokens/)
+
+### App password Authentication
+
 Give the bot app password the following permission scopes:
 
 | Permission                                                                                           | Scope                      |
@@ -42,6 +48,22 @@ Let Renovate use your app password by doing _one_ of the following:
 Remember to:
 
 - Set the `username` for the bot account (which is _not_ your email address). You can find your username through "Personal Bitbucket settings" on the "Account settings" page for your account
+
+### Repository Access Token Authentication
+
+Give the Repository Access Toekn the following permission scopes:
+
+| Permission                                                                                           | Scope                      |
+| ---------------------------------------------------------------------------------------------------- | -------------------------- |
+| [`repository:write`](https://developer.atlassian.com/cloud/bitbucket/rest/intro/#repository-write)                     | Repository: Write              |
+| [`pullrequest:write`](https://developer.atlassian.com/cloud/bitbucket/rest/intro/#pullrequest-write) | Pull Requests: Write      |
+
+Let Renovate use the Repository Access Token via repository settings:
+
+- Set the Repository Access Token as an Repository variables named `RENOVATE_TOKEN`
+
+## Running Renovate
+
 - Set `platform=bitbucket` somewhere in your Renovate config file
 
 ## Unsupported platform features/concepts
